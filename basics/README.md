@@ -97,18 +97,18 @@ In Akka, **Props** is a configuration class used to create actors. It defines ho
 When we pass `Props[HelloWorldActor]`, we are telling Akka to create an actor of type **HelloWorldActor**. Thus, it acts as a factory for actor creation, managing how they are set up.
 
 #2. Syntax Breakdown:
-```
+```scala
 val system = ActorSystem("HelloWorldSystem")
 ```
->ActorSystem:
+`ActorSystem`:
 This is like the container that manages actors. It sets up the environment (threads, memory, etc.) where the actors will live and interact.
->"HelloWorldSystem":
+`"HelloWorldSystem"`:
 The name given to the actor system (you can choose any name). It helps organize and identify your actor system.
-```
+```scala
 val helloWorldActor = system.actorOf(Props[HelloWorldActor], "helloWorldActor")
 ```
-system.actorOf(...): This creates a new actor in the system. You’re asking the actor system to create an actor using a recipe (i.e., Props).
+`system.actorOf(...)`: This creates a new actor in the system. You’re asking the actor system to create an actor using a recipe (i.e., Props).
 
-Props[HelloWorldActor]: This tells the actor system which class (in this case, HelloWorldActor) to instantiate. So, Akka creates a new instance of HelloWorldActor behind the scenes.
+`Props[HelloWorldActor]`: This tells the actor system which class (in this case, HelloWorldActor) to instantiate. So, Akka creates a new instance of HelloWorldActor behind the scenes.
 
-"helloWorldActor": This is the name given to the actor, similar to a unique identifier. You can use this name to identify the actor in logs or for debugging purposes.
+`"helloWorldActor"`: This is the name given to the actor, similar to a unique identifier. You can use this name to identify the actor in logs or for debugging purposes.
