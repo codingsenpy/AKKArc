@@ -90,8 +90,25 @@ object Main extends App {
 - The "goodbye" message doesn't match "hello", so it prints "Unknown message".
 
 
-# What are Props?
+#1. What are Props?
 
 In Akka, **Props** is a configuration class used to create actors. It defines how to create an instance of an actor. It's similar to saying, "Here's the blueprint or recipe to create this actor."
 
 When we pass `Props[HelloWorldActor]`, we are telling Akka to create an actor of type **HelloWorldActor**. Thus, it acts as a factory for actor creation, managing how they are set up.
+
+#2. Syntax Breakdown:
+```
+val system = ActorSystem("HelloWorldSystem")
+```
+>ActorSystem:
+This is like the container that manages actors. It sets up the environment (threads, memory, etc.) where the actors will live and interact.
+>"HelloWorldSystem":
+The name given to the actor system (you can choose any name). It helps organize and identify your actor system.
+```
+val helloWorldActor = system.actorOf(Props[HelloWorldActor], "helloWorldActor")
+```
+system.actorOf(...): This creates a new actor in the system. You’re asking the actor system to create an actor using a recipe (i.e., Props).
+
+Props[HelloWorldActor]: This tells the actor system which class (in this case, HelloWorldActor) to instantiate. So, Akka creates a new instance of HelloWorldActor behind the scenes.
+
+"helloWorldActor": This is the name given to the actor, similar to a unique identifier. You can use this name to identify the actor in logs or for debugging purposes.
