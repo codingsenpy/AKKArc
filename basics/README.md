@@ -102,7 +102,7 @@ val system = ActorSystem("HelloWorldSystem")
 ```
 `ActorSystem`:
 This is like the container that manages actors. It sets up the environment (threads, memory, etc.) where the actors will live and interact.
-`"HelloWorldSystem"`:
+-`"HelloWorldSystem"`:
 The name given to the actor system (you can choose any name). It helps organize and identify your actor system.
 ```scala
 val helloWorldActor = system.actorOf(Props[HelloWorldActor], "helloWorldActor")
