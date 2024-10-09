@@ -11,7 +11,7 @@
 
 4. **Use a hierarchical system for top-level actors**:
    **Top-level actors** are critical for error handling (known as the **Error Kernel**), so they should be created sparingly. Prefer building a clear **actor hierarchy** to handle faults and manage performance. This also reduces the load on the **guardian actor**, which manages all top-level actors. Overusing top-level actors can make the guardian actor a bottleneck.
-`____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________`
+`___________________________________________________________________________________________________________________________________`
 
 Depending on the type of work being supervised and the nature of the failure, a supervisor has four options for handling failures:
 
@@ -19,7 +19,7 @@ Depending on the type of work being supervised and the nature of the failure, a 
 2. **Restart** the subordinate, clearing out its accumulated internal state.
 3. **Stop** the subordinate permanently.
 4. **Escalate** the failure, causing the supervisor itself to fail.
-`_______________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________`
+___________________________________________________________________________________________________________________________________`
 
 ### Actor Selection in Akka
 
