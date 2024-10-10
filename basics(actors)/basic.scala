@@ -1,4 +1,4 @@
-mport akka.actor.{Actor, ActorSystem, Props}
+import akka.actor.{Actor, ActorSystem, Props}
 
 class HelloWorldActor extends Actor{
    def receive = {
