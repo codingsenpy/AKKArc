@@ -1,4 +1,4 @@
-## What is Props?
+# What is Props?
 In Akka, `Props` is a configuration class used to specify how actors are created. It encapsulates the instructions for actor instantiation and configuration, making it possible to define actor behavior, constructor parameters, dispatcher, and router settings.
 
 `Props` is the main way to create new actor instances. It can be considered a "blueprint" or "factory" that the `ActorSystem` uses to create actors.
