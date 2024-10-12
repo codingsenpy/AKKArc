@@ -43,3 +43,65 @@ In this example:
 
 The `ParentActor` creates a `ChildActor` whenever it receives a `"createChild"` message.
 The child actor then responds to the `"start"` message by executing its defined behavior.
+
+### Global Actor Creation
+When you create an actor at the system level, you typically use the ActorSystem reference like this:
+
+```scala
+val actorSystem = ActorSystem("MyActorSystem")
+val globalActor = actorSystem.actorOf(Props[GlobalActor], "globalActor")
+```
+### Key Differences
+#### Scope:
+
+#### Global Actor: 
+Created within the context of the entire ActorSystem, which means it can be accessed globally within that system.
+#### Child Actor: 
+Created within the context of a specific parent actor, which means it can interact directly with that parent actor.
+Actor Hierarchy:
+
+#### Global Actor: 
+Does not have a parent-child relationship with other actors unless explicitly set.
+#### Child Actor: 
+Has the parent actor as its direct parent, allowing for built-in supervision and lifecycle management.
+Fault Handling:
+
+#### Global Actor: 
+Managed at the system level; failures are not automatically handled by a parent.
+#### Child Actor: 
+Benefits from the supervision strategy of the parent actor, allowing for more robust fault tolerance.
+
+## 4. Stopping Actors
+### Code:
+
+```scala
+
+context.stop(self) // Stop itself
+context.stop(childActor) // Stop a child actor
+```
+### Purpose: 
+These lines are used to stop the actor.
+`#### context.stop(self):` Stops the current actor (the one executing this code).
+`#### context.stop(childActor):` Stops the specified child actor. Once stopped, the actor will no longer process messages.
+3. Supervision
+Code:
+
+scala
+Copy code
+context.watch(childActor) // Monitor the child actor
+Purpose: This line enables the parent actor to monitor the lifecycle of the child actor.
+context.watch: When you watch a child actor, the parent will receive a Terminated message when the child actor is stopped or crashes. This is useful for managing actor lifecycles and implementing fault tolerance strategies.
+4. Scheduling Messages
+Code:
+
+scala
+Copy code
+import scala.concurrent.duration._
+context.system.scheduler.scheduleOnce(1.second) {
+  context.parent ! "Hello after delay"
+}(context.dispatcher) // Specify the execution context
+Purpose: This allows you to send a message to the parent actor after a specified delay (1 second in this case).
+Components:
+context.system.scheduler: Accesses the scheduler of the actor system.
+scheduleOnce: Schedules the execution of a block of code (sending a message in this case) after a delay.
+context.dispatcher: Specifies the execution context for running this scheduled task, allowing it to execute in the right thread pool.
