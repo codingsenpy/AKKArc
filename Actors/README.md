@@ -1,2 +1,2 @@
-# AKKArc
-learn akka
+# READ the README files
+## Learn Actors in akka
