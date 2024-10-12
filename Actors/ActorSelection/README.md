@@ -11,10 +11,10 @@ The `actorSelection` method allows you to specify an actor path, which could be 
 ### Example Usage
 In this example, the actor sends a message to another actor without holding its `ActorRef`, but instead by using its logical path:
 
-\```scala
+```scala
 // Sending a message to a sibling actor using actorSelection
 context.actorSelection("../someOtherActor") ! message
-\```
+```
 
 - `"../someOtherActor"` is a relative path that navigates up one level (`..`) in the hierarchy and looks for the sibling actor named `someOtherActor`.
 - The `message` will be sent to that actor if it exists.
@@ -23,16 +23,16 @@ context.actorSelection("../someOtherActor") ! message
 1. **Relative Path**: As seen in the example above, `../someOtherActor` refers to a sibling actor by moving up one level from the current actor's path.
    
    Example:
-   \```scala
+   ```scala
    context.actorSelection("../siblingActor") ! "Hi!"
-   \```
+   ```
 
 2. **Absolute Path**: You can also use the absolute path starting from the root of the `ActorSystem`. For example:
    
-   \```scala
+   ```scala
    val system = context.system
    system.actorSelection("/user/someActor") ! "Hello"
-   \```
+   ```
 
 In this case, `"/user/someActor"` refers to an actor under the root `/user` guardian.
 
