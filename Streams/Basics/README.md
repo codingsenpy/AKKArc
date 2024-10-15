@@ -1,4 +1,4 @@
-### Akka Streams: Introduction
+## Akka Streams: Introduction
 
 **Akka Streams** is a module designed for handling large streams of data in a **non-blocking**, **asynchronous** way. It simplifies working with continuous data streams using a **pipeline** approach while being built on top of Akka's actor model. Streams help process data efficiently by managing backpressure and processing data in chunks.
 
@@ -55,10 +55,10 @@ A **Sink** is the end of the stream, where data is finally collected or consumed
 To create a full stream, you need to connect a `Source`, a `Flow`, and a `Sink`. 
 
 - **Example of a Complete Stream**:
-  >>> 
+  ```scala 
   val runnableGraph = source.via(flow).to(sink)
   runnableGraph.run()
-  >>>
+  ```
 
 This example takes a `Source` that emits numbers from 1 to 10, applies a `Flow` that multiplies each number by 2, and sends the results to a `Sink` that prints each value.
 
